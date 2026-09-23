@@ -1,76 +1,174 @@
-# My Geodev - lab project
+# Data notes
 
-Which settlements in Dera Ghazi Khan District are more than 7 km by road from the nearest health facility, and where are the potential healthcare accessibility gaps?
 
-### Why it matters.
 
-Dera Ghazi Khan District contains a large number of rural and remote settlements, where access to healthcare can be affected by distance and road connectivity. Although health facilities exist across the district, the presence of a facility does not necessarily mean that surrounding communities can reach it easily.
+### Dera Ghazi Khan District Boundary
 
-Measuring straight-line distance can also give a misleading picture of accessibility because people travel along roads. Identifying settlements that are more than 7 km by road from their nearest health facility can help highlight potentially underserved communities, support healthcare infrastructure planning, and identify priority areas for improving access to essential health services.
 
-### The data I need.
 
-Dera Ghazi Khan District boundary: Polygon boundary defining the study area.
+Source: Humanitarian Data Exchange (HDX) / OCHA — https://data.humdata.org
 
-Tehsil boundaries: Administrative boundaries for analyzing healthcare accessibility across different tehsils.
+Study area: Dera Ghazi Khan District, Punjab, Pakistan
 
-Settlement locations: Point locations of villages, towns, and other settlements within Dera Ghazi Khan District.
+Geometry: Polygon
 
-Health facilities: Locations and types of hospitals, Basic Health Units (BHUs), Rural Health Centres (RHCs), dispensaries, and other healthcare facilities.
+CRS: EPSG:4326 (WGS 84)
 
-Road network: Connected road network covering the study area, required to calculate realistic road distance between settlements and health facilities.
+Study area extracted from the Pakistan administrative boundary dataset (pakadm)
 
-Population data: Population distribution or settlement-level population estimates to understand the number of people potentially affected by poor healthcare accessibility.
+The district boundary was used to define the project study area
 
-### The data Source
+Completeness: The district boundary provides full coverage of the study area
 
-Administrative boundaries – Humanitarian Data Exchange (HDX) / OCHA – https://data.humdata.org
+Positional: The boundary was reviewed in QGIS and aligns with the prepared spatial datasets
 
-Settlement locations – OpenStreetMap – https://www.openstreetmap.org
+Fitness: It is fit for defining the study area and clipping the other project datasets
 
-Health facilities – Open Data Pakistan, Pakistan Health Sites – https://opendata.com.pk/dataset/pakistan-health-sites
 
-Road network – OpenStreetMap / Geofabrik – https://download.geofabrik.de
 
-Population data – WorldPop – https://www.worldpop.org
+### Tehsil Boundaries
 
-### Methodology
 
-I will map settlements and health facilities across Dera Ghazi Khan District and prepare the available road network for network analysis. Instead of using straight-line buffers, I will calculate the shortest road-network distance from each settlement to its nearest health facility.
 
-The results will then be classified using the 7 km threshold:
+Source: Humanitarian Data Exchange (HDX) / OCHA — https://data.humdata.org
 
-0–7 km: Within the project accessibility threshold
-More than 7 km: Potentially underserved
+Study area: Dera Ghazi Khan District
 
-I will overlay the results with tehsil boundaries and population data to identify where healthcare accessibility gaps are concentrated and which areas may have the greatest potential impact.
+Geometry: Polygons
 
-### Tools I would use
+CRS: EPSG:4326 (WGS 84)
 
-QGIS / ArcGIS Pro – for spatial data preparation, network analysis, proximity analysis, mapping, and visualization.
+Used to analyze healthcare accessibility patterns across different tehsils
 
-Python / ArcPy – for automating data processing and analysis where appropriate.
+Completeness: The available tehsil boundaries cover the study area
 
-OpenStreetMap / Geofabrik – for settlement and road-network data.
+Positional: The boundaries were reviewed against the district study area
 
-GitHub – for version control, project documentation, and sharing the project workflow.
+Attribute: Contains administrative information required for tehsil-level analysis
 
-### What I would build.
+Fitness: It is fit for summarizing and comparing healthcare accessibility across tehsils
 
-I would build an interactive Healthcare Accessibility Map and Dashboard for Dera Ghazi Khan District showing settlements, health facilities, road networks, and accessibility zones.
+Settlement Locations
 
-The dashboard would allow users to explore a settlement and identify its nearest health facility, the shortest road distance to that facility, and whether the settlement falls beyond the 7 km accessibility threshold.
+Source: OpenStreetMap — https://www.openstreetmap.org
 
-The final product would provide a simple spatial decision-support tool for identifying potential healthcare gap areas and prioritizing locations for further investigation or infrastructure planning.
+Study area: Dera Ghazi Khan District
 
-### Limitations
+Geometry: Points
 
-OpenStreetMap road and settlement data may be incomplete, particularly in remote or rural areas, and some health facilities may be missing or have outdated coordinates. Road-network distance also does not account for traffic, road conditions, seasonal accessibility, travel speed, or health-facility capacity.
+CRS: EPSG:4326 (WGS 84)
 
-The 7 km threshold is an analytical criterion for this project and should not be interpreted as an official healthcare accessibility standard without validation from relevant health authorities.
+Used to represent villages, towns, and other settlements
 
-Field verification and more detailed population, road-condition, travel-time, and health-facility capacity data would strengthen the analysis.
+Completeness: Settlement coverage may be incomplete, particularly in remote and rural areas
 
-### Project Status
+Currency: OpenStreetMap data is continuously updated; the download date should be recorded with the final dataset
 
-Currently in the planning and data collection stage.
+Positional: Settlement locations should be reviewed against satellite imagery where necessary
+
+Attribute: Settlement names and available settlement information are used to identify individual locations
+
+Fitness: It is fit for the project accessibility analysis, subject to limitations in rural settlement coverage
+
+
+
+### Health Facilities
+
+
+
+Source: Open Data Pakistan — Pakistan Health Sites — https://opendata.com.pk/dataset/pakistan-health-sites
+
+Study area: Dera Ghazi Khan District
+
+Geometry: Points
+
+CRS: EPSG:4326 (WGS 84)
+
+Used to represent healthcare facilities within the study area
+
+Facility types may include hospitals, Basic Health Units (BHUs), Rural Health Centres (RHCs), dispensaries, and other healthcare facilities
+
+Completeness: The dataset may not contain every health facility currently operating in the study area
+
+Positional: Facility locations should be reviewed against available reference imagery or other authoritative sources
+
+Attribute: Facility names and available facility-type information support the healthcare accessibility analysis
+
+Fitness: It is fit for identifying potential healthcare access points, subject to completeness and positional limitations
+
+
+
+### Roads
+
+
+
+Source: OpenStreetMap / Geofabrik — https://download.geofabrik.de
+
+Study area: Dera Ghazi Khan District
+
+Geometry: Lines
+
+CRS: EPSG:4326 (WGS 84)
+
+Used to construct the road network for shortest-path accessibility analysis
+
+Completeness: Road coverage may be incomplete in some rural and remote areas
+
+Currency: OpenStreetMap road data is continuously updated; the download date should be recorded with the final dataset
+
+Positional: Road geometries should be reviewed against satellite imagery where necessary
+
+Attribute: Available road classifications and road-network attributes support network preparation
+
+Fitness: It is fit for road-network distance analysis, subject to network completeness and connectivity limitations
+
+
+
+### Population Data
+
+
+
+Source: WorldPop — https://www.worldpop.org
+
+Study area: Dera Ghazi Khan District
+
+Geometry: Raster
+
+CRS: Dataset-dependent; reprojected to the project working CRS during processing
+
+Used to estimate the population potentially affected by healthcare accessibility gaps
+
+Completeness: Population coverage is available as a spatial population surface
+
+Currency: The selected WorldPop year should be recorded with the final dataset
+
+Positional: Population estimates are represented spatially through the raster grid rather than individual population locations
+
+Attribute: Population values represent estimated population counts/density according to the selected WorldPop product
+
+Fitness: It is fit for estimating the potential population impact of identified accessibility gaps, subject to the limitations of gridded population estimates
+
+
+
+### CRS and Preparation
+
+
+
+All source vector data arrived in EPSG:4326 (WGS 84)
+
+Study Area: Dera Ghazi Khan District, extracted from the pakadm administrative boundary dataset
+
+All relevant layers were reprojected to EPSG:32643 (WGS 84 / UTM Zone 43N)
+
+Spatial layers were clipped to the Dera Ghazi Khan District study area
+
+Area Check: The Dera Ghazi Khan district boundary was reviewed to confirm that the prepared study area and spatial datasets align correctly
+
+The projected CRS provides a metric coordinate system suitable for subsequent distance and network analysis
+
+Working files are stored in data/processed/
+
+
+Raw source files remain untouched in data/raw/
+
+Prepared data will be used for the next stage of healthcare accessibility analysis
